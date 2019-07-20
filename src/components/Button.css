@@ -1,0 +1,26 @@
+.button {
+  height: 70px;
+  width: 70px;
+  background-color: #fff;
+  font-size: 1.9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.orange {
+  background-color: #f09a37;
+  color: #fff;
+}
+
+.gray {
+  background-color: #a5a5a5;
+  color: #000;
+}
+
+.dark-gray {
+  background-color: #333333;
+  color: #fff;
+}

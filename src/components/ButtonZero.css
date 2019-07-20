@@ -1,0 +1,49 @@
+.button-zer0 {
+  height: 70px;
+  width: 70px;
+  background-color: #333333;
+  font-size: 1.9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.button-zero {
+  height: 70px;
+  width: 156px;
+  display: flex;
+  position: relative;
+}
+
+.button-zero-left {
+  height: 70px;
+  width: 70px;
+  left: 0px;
+  background-color: #333333;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.9em;
+  color: #fff;
+  z-index: 5;
+}
+
+.button-zero-center {
+  height: 70px;
+  width: 86px;
+  left: 35px;
+  background-color: #333333;
+  position: absolute;
+}
+
+.button-zero-right {
+  height: 70px;
+  width: 70px;
+  left: 86px;
+  background-color: #333333;
+  border-radius: 50%;
+  position: absolute;
+}
