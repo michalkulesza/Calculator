@@ -9,7 +9,7 @@ class Button extends Component {
           !isNaN(this.props.children) || this.props.children === "."
             ? "dark-gray"
             : this.props.children === "C" ||
-              this.props.children === "+/-" ||
+              this.props.children === "⌫" ||
               this.props.children === "√"
             ? "gray"
             : "orange"

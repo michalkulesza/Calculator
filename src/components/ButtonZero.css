@@ -29,6 +29,7 @@
   font-size: 1.9em;
   color: #fff;
   z-index: 5;
+  cursor: pointer;
 }
 
 .button-zero-center {
@@ -37,6 +38,7 @@
   left: 35px;
   background-color: #333333;
   position: absolute;
+  cursor: pointer;
 }
 
 .button-zero-right {
@@ -46,4 +48,5 @@
   background-color: #333333;
   border-radius: 50%;
   position: absolute;
+  cursor: pointer;
 }

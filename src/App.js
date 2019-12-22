@@ -10,24 +10,104 @@ class App extends Component {
     input: "0"
   };
 
+  componentDidUpdate() {
+    if (this.state.input === "") {
+      this.setState({ input: "0" });
+    } else if (this.state.input.length > 11) {
+      this.setState({ input: `${this.state.input.slice(1, this.state.input.length)}` });
+    }
+  }
+
   addToInput = props => {
-    this.state.input === "Error"
-      ? this.setState({ input: `${props}` })
-      : props === "x"
-      ? this.setState({ input: `${this.state.input + "*"}` })
-      : this.state.input === "0" && props !== "0"
-      ? this.setState({ input: `${props}` })
-      : this.setState({ input: `${this.state.input + props}` });
+    let lastChar = this.state.input[this.state.input.length - 1];
+    //Peroid
+    if (props === ".") {
+      if (this.state.input === "0") {
+        this.setState({ input: `${this.state.input}${props}` });
+        return;
+      } else if (lastChar !== ".") {
+        this.setState({ input: `${this.state.input}${props}` });
+      }
+      //Special Chars
+      // +
+    } else if (props === "+") {
+      if (
+        lastChar === "+" ||
+        lastChar === "-" ||
+        lastChar === "." ||
+        lastChar === "*" ||
+        lastChar === "/" ||
+        this.state.input === "Error"
+      ) {
+        return null;
+      } else {
+        this.setState({ input: `${this.state.input}${props}` });
+      }
+      // -
+    } else if (props === "-") {
+      if (lastChar === "-" || lastChar === "." || this.state.input === "Error") {
+        return null;
+      } else {
+        this.setState({ input: `${this.state.input}${props}` });
+      }
+      //x
+    } else if (props === "x") {
+      if (
+        lastChar === "-" ||
+        lastChar === "." ||
+        lastChar === "*" ||
+        lastChar === "/" ||
+        this.state.input === "Error"
+      ) {
+        return null;
+      } else {
+        this.setState({ input: `${this.state.input}*` });
+      }
+      // /
+    } else if (props === "/") {
+      if (
+        lastChar === "-" ||
+        lastChar === "." ||
+        lastChar === "*" ||
+        lastChar === "/" ||
+        this.state.input === "Error"
+      ) {
+        return null;
+      } else {
+        this.setState({ input: `${this.state.input}${props}` });
+      }
+    } else {
+      //Numbers
+      if (this.state.input === "0") {
+        this.setState({ input: `${props}` });
+      } else {
+        this.setState({ input: `${this.state.input}${props}` });
+      }
+    }
   };
 
   sqrtInput = () => {
-    this.setState({ input: `${round(sqrt(this.state.input), 3)}` });
+    let lastChar = this.state.input[this.state.input.length - 1];
+    if (
+      lastChar === "/" ||
+      lastChar === "*" ||
+      lastChar === "-" ||
+      lastChar === "+" ||
+      this.state.input === "0" ||
+      this.state.input === "Error"
+    ) {
+      this.setState({ input: "Error" });
+    } else {
+      this.setState({ input: `${round(sqrt(this.state.input), 3)}` });
+    }
   };
 
-  negativeInput = () => {
-    this.state.input.charAt(0) !== "-"
-      ? this.setState({ input: `-${this.state.input}` })
-      : this.setState({ input: `${this.state.input.slice(1)}` });
+  deleteLastChar = () => {
+    if (this.state.input === "0") {
+      return null;
+    } else {
+      this.setState({ input: `${this.state.input.slice(0, -1)}` });
+    }
   };
 
   clearInput = () => {
@@ -35,15 +115,21 @@ class App extends Component {
   };
 
   equalInput = () => {
-    this.state.input === "-" ||
-    this.state.input === "+" ||
-    this.state.input.charAt(0) === "/" ||
-    this.state.input.charAt(0) === "*" ||
-    this.state.input.charAt(0) === "0" ||
-    this.state.input.charAt(0) === "" ||
-    this.state.input.charAt(0) === "="
-      ? this.setState({ input: "0" })
-      : this.setState({ input: `${round(evaluate(this.state.input), 2)}` });
+    let lastChar = this.state.input[this.state.input.length - 1];
+
+    if (
+      this.state.input === "0" ||
+      this.state.input === "Error" ||
+      lastChar === "-" ||
+      lastChar === "+" ||
+      lastChar === "." ||
+      lastChar === "*" ||
+      lastChar === "/"
+    ) {
+      return null;
+    } else {
+      this.setState({ input: `${round(evaluate(this.state.input), 2)}` });
+    }
   };
 
   render() {
@@ -53,7 +139,7 @@ class App extends Component {
           <Input input={this.state.input} />
           <div className="row">
             <Button handleClick={this.clearInput}>C</Button>
-            <Button handleClick={this.negativeInput}>+/-</Button>
+            <Button handleClick={this.deleteLastChar}>⌫</Button>
             <Button handleClick={this.sqrtInput}>√</Button>
             <Button handleClick={this.addToInput}>/</Button>
           </div>
