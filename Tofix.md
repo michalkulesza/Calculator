@@ -1,2 +1,2 @@
-76+67 and prime = error
-can do multiples of **\*\*** or ///////
+- Add keyboard functionality
+- Fix '.' behaviour. Use peroid detection in blocks?
