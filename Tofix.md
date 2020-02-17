@@ -1,2 +1,1 @@
 - Add keyboard functionality
-- Fix '.' behaviour. Use peroid detection in blocks?

@@ -1,27 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Button.css";
 
-class Button extends Component {
-  render() {
-    return (
-      <div
-        className={`button ${
-          !isNaN(this.props.children) || this.props.children === "."
-            ? "dark-gray"
-            : this.props.children === "C" ||
-              this.props.children === "⌫" ||
-              this.props.children === "√"
-            ? "gray"
-            : "orange"
-        }`}
-        onClick={() => {
-          this.props.handleClick(this.props.children);
-        }}
-      >
-        {this.props.children}
-      </div>
-    );
-  }
-}
+const Button = props => {
+  return (
+    <div
+      className={`button ${
+        !isNaN(props.children) || props.children === "."
+          ? "dark-gray"
+          : props.children === "C" || props.children === "⌫" || props.children === "√"
+          ? "gray"
+          : "orange"
+      }`}
+      onClick={() => {
+        props.handleClick(props.children);
+      }}
+    >
+      {props.children}
+    </div>
+  );
+};
 
 export default Button;
